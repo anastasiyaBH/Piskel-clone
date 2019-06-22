@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Piskel-clone</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  </head>
+  <body class="body">
+    <header class="header">
+      <a class="logo-link"><img src="../assets/piskel-logo.png"></a>
+      <span class="header__project-name">New Piskel</span>
+    </header>
+    <main class="main">
+      <div class="tool-column">
+        <ul class="tool-wrapper">
+        </ul>
+        <div class="palette-wrapper">
+          <div class="palette-wrapper__color main-color"></div>
+          <div class="palette-wrapper__color background-color"></div>
+          <div class="palette-wrapper__change-button">
+              <i class="fas fa-sync-alt"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="frame-column">
+        <ul class="frame-wrapper">
+          <li class="frame-inform selected">
+            <canvas class="frame-inform__canvas-icon" width="96" height="96"></canvas>
+            <button class="frame-inform__button number-button">1</button>
+            <button class="frame-inform__button duplicate-button"><i class="far fa-copy"></i></button>
+            <button class="frame-inform__button delete-button"><i class="far fa-trash-alt"></i></button>
+            <button class="frame-inform__button dragndrop-button"><i class="fas fa-arrows-alt"></i></button>
+          </li>
+          <li class="frame-inform">
+              <canvas class="frame-inform__canvas-icon" width="96" height="96"></canvas>
+              <button class="frame-inform__button number-button">2</button>
+              <button class="frame-inform__button duplicate-button"><i class="far fa-copy"></i></button>
+              <button class="frame-inform__button delete-button"><i class="far fa-trash-alt"></i></button>
+              <button class="frame-inform__button dragndrop-button"><i class="fas fa-arrows-alt"></i></button>
+            </li>
+        </ul>
+        <buttom class="frame-wrapper__add-frame-button"><i class="fas fa-plus"></i> Add frame</buttom>
+      </div>
+      <div class="canvas-column">
+        <div class="canvas-area">
+
+        </div>
+      </div>
+      <div class="animation-column"></div>
+    </main>
+  </body>
+</html>
