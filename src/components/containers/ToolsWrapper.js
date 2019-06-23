@@ -4,7 +4,8 @@ export default class ToolsWrapper {
     this.toolsWrapper = document.createElement('li');
     this.toolsWrapper.className = 'tool-wrapper';
 
-    document.querySelector('.tool-column').appendChild(this.toolsWrapper);
+    const toolColumn = document.querySelector('.tool-column');
+    toolColumn.insertBefore(this.toolsWrapper,toolColumn.firstChild);
   }
 
   set () {
