@@ -9,10 +9,11 @@ export default class Eraser {
     this.eraser.className = 'tool-wrapper__tool';
     this.eraser.innerHTML = '<i class="fas fa-eraser"></i>';
 
-    document.querySelector('.tool-wrapper').appendChild(this.pen);
+    document.querySelector('.tool-wrapper').appendChild(this.eraser);
   }
 
   set () {
+    this.eraser.onclick = () => {
     this.currentCanvas.onmousedown = () => {
       this.currentCanvas.onmousemove = (event) => {
         let x = Math.floor((this.canvasSize * event.offsetX) / WINDOW_SIZE);
@@ -28,5 +29,6 @@ export default class Eraser {
         this.currentCanvas.onmousemove = null;
       };
     };
+  };
   }
 }

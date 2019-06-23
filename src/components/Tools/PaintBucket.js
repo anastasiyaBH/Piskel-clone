@@ -1,4 +1,6 @@
 const WINDOW_SIZE = 525;
+const LEFT_MOUSE_BUTTON = 1;
+const RIGHT_MOUSE_BUTTON = 3;
 
 export default class PaintBucket {
   constructor (canvas) {
@@ -20,7 +22,26 @@ export default class PaintBucket {
 
       const ctx = this.currentCanvas.getContext('2d');
 
-      floodFill(startX, startY, {r:255}, this.canvasSize);
+      function parseRGB (rgb) {
+        let arrRGB = rgb.match(/\d+/g);
+        return {
+          r: arrRGB[0],
+          g: arrRGB[1],
+          b :arrRGB[2],
+        }
+      }
+
+      let color;
+
+      if(event.which == LEFT_MOUSE_BUTTON) {
+        color = parseRGB(document.querySelector('.main-color').style.background);
+      }
+
+      if(event.which == RIGHT_MOUSE_BUTTON) {
+        color =  parseRGB(document.querySelector('.background-color').style.background);
+      }
+
+      floodFill(startX, startY, color, this.canvasSize);
 
       function  getPixelPos (x, y, size) {
         return (y * size + x) * 4;
@@ -42,24 +63,24 @@ export default class PaintBucket {
 
       function floodFill (startX, startY, fillColor, size) {
 
-        var dstImg = ctx.getImageData(0,0, size , size);
-        var dstData = dstImg.data;
+        let dstImg = ctx.getImageData(0,0, size , size);
+        let dstData = dstImg.data;
 
-        var startPos = getPixelPos(startX, startY,size);
-        var startColor = {
+        let startPos = getPixelPos(startX, startY,size);
+        let startColor = {
           r: dstData[startPos],
           g: dstData[startPos+1],
           b: dstData[startPos+2],
           a: dstData[startPos+3]
         };
 
-        var todo = [[startX,startY]];
+        let todo = [[startX,startY]];
 
         while (todo.length) {
-          var pos = todo.pop();
-          var x = pos[0];
-          var y = pos[1];
-          var currentPos = getPixelPos(x, y,size);
+          let pos = todo.pop();
+          let x = pos[0];
+          let y = pos[1];
+          let currentPos = getPixelPos(x, y,size);
 
           while((y-- >= 0) && matchStartColor(dstData, currentPos, startColor)) {
             currentPos -=  size * 4;
@@ -67,8 +88,8 @@ export default class PaintBucket {
 
           currentPos +=  size * 4;
           ++y;
-          var reachLeft = false;
-          var reachRight = false;
+          let reachLeft = false;
+          let reachRight = false;
 
           while((y++ <  size-1) && matchStartColor(dstData, currentPos, startColor)) {
 
