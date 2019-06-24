@@ -13,6 +13,8 @@ export default class ColorSelector {
     this.swapButton.classList.add ('palette-wrapper__change-button');
     this.swapButton.innerHTML = '<i class="fas fa-sync-alt"></i>';
 
+    this.primary.style.background = '#ffffff';
+    this.secondary.style.background = '#000000';
 
     document.querySelector('.palette-wrapper').appendChild(this.primary);
     document.querySelector('.palette-wrapper').appendChild(this.secondary);
