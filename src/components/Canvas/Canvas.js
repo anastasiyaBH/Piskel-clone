@@ -11,6 +11,12 @@ export default class Canvas {
     document.querySelector('.canvas-area').appendChild(this.canvas);
 
     this.size = DEFAULT_SIZE;
+
+    this.canvas.addEventListener ('mouseup', () => {
+      // eslint-disable-next-line no-console
+      console.log('!!!!!');
+      this.canvas.dispatchEvent(new Event('canvas'));
+    });
   }
 
   clear() {
