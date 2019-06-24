@@ -1,14 +1,18 @@
 export default class Frame {
-  constructor (canvas) {
+  constructor(canvas) {
     this.currentCanvas = canvas;
 
     this.frame = document.createElement('li');
     this.frame.classList.add('frame-inform');
 
     this.canvasIcon = document.createElement('canvas');
-    this.canvasIcon.setAttribute("width", this.currentCanvas.getAttribute("width"));
-    this.canvasIcon.setAttribute("height", this.currentCanvas.getAttribute("height"));
+    this.canvasIcon.setAttribute("width", this.currentCanvas.getCanvas().getAttribute("width"));
+    this.canvasIcon.setAttribute("height", this.currentCanvas.getCanvas().getAttribute("height"));
     this.canvasIcon.className = 'frame-inform__canvas-icon';
+    this.canvasIcon.classList.add('canvas');
+
+    this.frameAction = document.createElement('div');
+    this.frameAction.classList.add('frame-inform__frame-action');
 
     this.numberButton = document.createElement('button');
     this.numberButton.classList.add('frame-inform__button');
@@ -28,10 +32,25 @@ export default class Frame {
 
     this.frame.appendChild(this.canvasIcon);
     this.frame.appendChild(this.numberButton);
-    this.frame.appendChild(this.duplicateButton);
-    this.frame.appendChild(this.deleteButton);
-    this.frame.appendChild(this.dragndropButton);
 
-    document.querySelector('.frame-column').appendChild(this.frame);
+    this.frameAction.appendChild(this.duplicateButton);
+    this.frameAction.appendChild(this.deleteButton);
+    this.frameAction.appendChild(this.dragndropButton);
+
+    this.frame.appendChild(this.frameAction);
+
+  }
+
+  getFrame() {
+    return this.frame;
+  }
+
+  setNumber(number) {
+    this.numberButton.innerHTML = number;
+  }
+
+  setFrameIcon() {
+    let ctx = this.canvasIcon.getContext('2d');
+    ctx.drawImage(this.currentCanvas.getCanvas(), 0, 0);
   }
 }
