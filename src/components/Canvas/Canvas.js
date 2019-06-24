@@ -6,6 +6,7 @@ export default class Canvas {
     this.canvas.setAttribute('width', DEFAULT_SIZE);
     this.canvas.setAttribute('height', DEFAULT_SIZE);
     this.canvas.className = 'canvas-area__canvas';
+    this.canvas.classList.add('canvas');
 
     document.querySelector('.canvas-area').appendChild(this.canvas);
 
