@@ -8,8 +8,7 @@ export default class Pen {
 
     this.pen = document.createElement('li');
     this.pen.className = 'tool-wrapper__tool';
-    //this.pen.classList.add('pen');
-    this.pen.innerHTML = '<i class="fas fa-pen"></i>';
+    this.pen.classList.add('pen');
 
     document.querySelector('.tool-wrapper').appendChild(this.pen);
   }

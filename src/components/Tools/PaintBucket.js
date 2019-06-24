@@ -8,7 +8,7 @@ export default class PaintBucket {
 
     this.paintBucket = document.createElement('li');
     this.paintBucket.className = 'tool-wrapper__tool';
-    this.paintBucket.innerHTML = '<i class="fas fa-fill-drip"></i>';
+    this.paintBucket.classList.add('bucket');
 
     document.querySelector('.tool-wrapper').appendChild(this.paintBucket);
   }

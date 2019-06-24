@@ -7,7 +7,7 @@ export default class Eraser {
 
     this.eraser = document.createElement('li');
     this.eraser.className = 'tool-wrapper__tool';
-    this.eraser.innerHTML = '<i class="fas fa-eraser"></i>';
+    this.eraser.classList.add('eraser');
 
     document.querySelector('.tool-wrapper').appendChild(this.eraser);
   }
