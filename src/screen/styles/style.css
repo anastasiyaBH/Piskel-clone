@@ -1,24 +1,28 @@
 .gray {
   background: #2b2b2b;
-  border:3px solid #454545;
+  border:3px solid #444;
   color: #fff;
 }
 
 .body {
   margin: 0 auto;
   background-color: #1D1D1D;
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
 }
 
 .header {
-  background-color: #454545;
+  background-color: #2d2d2d;
   padding: 5px 20px;
   height: 36px;
   display: flex;
   justify-content: flex-start;
 }
 
-.logo-link img{
+.logo-link{
+  background: url(../../assets/piskel-logo.png);
   height: 24px;
+  width: 85px;
 }
 
 .header__project-name{
@@ -44,9 +48,19 @@
   height: 84vh;
 }
 
+.aplication-action-column{
+  padding: 5px;
+  border: 1px solid white;
+  flex-basis: 3%;
+  height: 84vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .canvas-column{
   border: 1px solid white;
-  flex-basis: 60%;
+  flex-basis: 57%;
 
   padding: 5px;
   display: flex;
@@ -65,11 +79,20 @@
   flex-wrap: wrap;
 }
 
-.tool-wrapper__tool {
+.aplication-action-wrapper{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  margin: auto 0;
+}
+
+.tool-wrapper__tool, .aplication-action-wrapper__action {
 width: 44px;
 height: 44px;
 margin: 1px;
-background-color: #888;
+background-color: #444;
 display: flex;
 justify-content: center;
 font-size: 16pt;
@@ -99,7 +122,7 @@ color: #fff;
   position: absolute;
   top: 40px;
   right: 16px;
-  background:url(../../assets/background.jpg);;
+  background: url(../../assets/background.jpg);
 }
 
 .palette-wrapper__change-button {
@@ -134,11 +157,11 @@ color: #fff;
 }
 
 .selected {
-  border: 3px solid orange;
+  border: 3px solid #ffd700;
 }
 
 .selected:hover{
-  border: 3px solid orange;
+  border: 3px solid #ffd700;
 }
 
 .frame-inform__button{
@@ -152,7 +175,7 @@ color: #fff;
 }
 
 .number-button {
-  background-color: orange;
+  background-color: #ffd700;
   color: #000;
   top: 0;
   left: 0;
@@ -183,21 +206,87 @@ color: #fff;
 }
 
 .frame-wrapper__add-frame-button:hover {
-  border: 3px solid orange;
+  border: 3px solid #ffd700;
 }
 
 .canvas-area {
   width: 875px;
   height: 525px;
-  background-color: #666;
+  background-color: #a0a0a0;
   display: flex;
   justify-content: center;
 }
 
 .canvas-area__canvas {
-  background: url(../../assets/background.jpg);
+  background:url(../../assets/background.png);
+  background-repeat: repeat;
   image-rendering: pixelated;
   width: 525px;
   height: 525px;
 }
 
+.resize {
+  background-image: url(../../assets/resize.png);
+}
+
+/* .pen {
+  background-image: url(../../assets/pen.svg);
+}*/
+
+.setting-column {
+  visibility: hidden;
+
+  position: absolute;
+  width: 200px;
+  height: 60vh;
+  background: #444;
+  box-shadow: 0 0 5px 0 black;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+
+  right: 0;
+  top: 140px;
+
+  padding: 5px 10px;
+}
+
+.enabled {
+  visibility: visible;
+}
+
+/****************************************************/
+.setting-column__name {
+  text-transform: uppercase;
+  color: #ffd700;
+  font-size: 12px;
+  margin-bottom: 15px;
+  padding-bottom: 5px;
+  border-bottom: 1px #aaa solid;
+}
+
+.setting-form__text {
+  color: #888;
+  font-size: 12px;
+}
+
+.setting-form__input-text{
+  background: #000;
+  color: #fff;
+  font-size: 12px;
+  border: 1px solid #888;
+}
+
+.setting-form__button{
+  background: #ffd700;
+  font-weight: bold;
+  color: #000;
+  text-transform: uppercase;
+  border: none;
+  margin-top: 15px;
+}
+
+.selected-action {
+  border-left: 3px solid #ffd700;
+  position: absolute;
+  right: 208px;
+}
