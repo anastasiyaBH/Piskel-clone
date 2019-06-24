@@ -3,7 +3,7 @@ const WINDOW_SIZE = 525;
 export default class Eraser {
   constructor (canvas) {
     this.currentCanvas = canvas.getCanvas();
-    this.canvasSize = canvas.getSize();
+
 
     this.eraser = document.createElement('li');
     this.eraser.className = 'tool-wrapper__tool';
@@ -16,8 +16,8 @@ export default class Eraser {
     this.eraser.onclick = () => {
     this.currentCanvas.onmousedown = () => {
       this.currentCanvas.onmousemove = (event) => {
-        let x = Math.floor((this.canvasSize * event.offsetX) / WINDOW_SIZE);
-        let y = Math.floor((this.canvasSize * event.offsetY) / WINDOW_SIZE);
+        let x = Math.floor((this.currentCanvas.getAttribute("width") * event.offsetX) / WINDOW_SIZE);
+        let y = Math.floor((this.currentCanvas.getAttribute("width") * event.offsetY) / WINDOW_SIZE);
         // eslint-disable-next-line no-console
         console.log(x, y);
 

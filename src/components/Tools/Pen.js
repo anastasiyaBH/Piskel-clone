@@ -5,10 +5,10 @@ const RIGHT_MOUSE_BUTTON = 3;
 export default class Pen {
   constructor (canvas) {
     this.currentCanvas = canvas.getCanvas();
-    this.canvasSize = canvas.getSize();
 
     this.pen = document.createElement('li');
     this.pen.className = 'tool-wrapper__tool';
+    //this.pen.classList.add('pen');
     this.pen.innerHTML = '<i class="fas fa-pen"></i>';
 
     document.querySelector('.tool-wrapper').appendChild(this.pen);
@@ -18,8 +18,9 @@ export default class Pen {
     this.pen.onclick = () => {
     this.currentCanvas.onmousedown = () => {
       this.currentCanvas.onmousemove = (event) => {
-        let x = Math.floor((this.canvasSize * event.offsetX) / WINDOW_SIZE);
-        let y = Math.floor((this.canvasSize * event.offsetY) / WINDOW_SIZE);
+        event.preventDefault();
+        let x = Math.floor((this.currentCanvas.getAttribute("width") * event.offsetX) / WINDOW_SIZE);
+        let y = Math.floor((this.currentCanvas.getAttribute("height") * event.offsetY) / WINDOW_SIZE);
 
         const ctx = this.currentCanvas.getContext('2d');
 

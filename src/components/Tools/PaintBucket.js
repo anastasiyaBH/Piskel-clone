@@ -5,7 +5,6 @@ const RIGHT_MOUSE_BUTTON = 3;
 export default class PaintBucket {
   constructor (canvas) {
     this.currentCanvas = canvas.getCanvas();
-    this.canvasSize = canvas.getSize();
 
     this.paintBucket = document.createElement('li');
     this.paintBucket.className = 'tool-wrapper__tool';
@@ -17,8 +16,9 @@ export default class PaintBucket {
   set () {
     this.paintBucket.onclick = () => {
     this.currentCanvas.onmousedown = () => {
-      let startX = Math.floor((this.canvasSize * event.offsetX) / WINDOW_SIZE);
-      let startY = Math.floor((this.canvasSize * event.offsetY) / WINDOW_SIZE);
+      event.preventDefault();
+      let startX = Math.floor((this.currentCanvas.getAttribute("width") * event.offsetX) / WINDOW_SIZE);
+      let startY = Math.floor((this.currentCanvas.getAttribute("height") * event.offsetY) / WINDOW_SIZE);
 
       const ctx = this.currentCanvas.getContext('2d');
 
@@ -41,7 +41,7 @@ export default class PaintBucket {
         color =  parseRGB(document.querySelector('.background-color').style.background);
       }
 
-      floodFill(startX, startY, color, this.canvasSize);
+      floodFill(startX, startY, color, this.currentCanvas.getAttribute("width"));
 
       function  getPixelPos (x, y, size) {
         return (y * size + x) * 4;
