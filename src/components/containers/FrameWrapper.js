@@ -48,10 +48,26 @@ export default class FrameWrapper {
     this.frameWrapper.onclick = (event) => {
 
       if(event.target.classList.contains('delete-button')) {
+        if(this.frameList.length === 1) {
+          alert('Last frame!');
+          return;
+        }
+
         let deleteFrame = event.target.parentNode.parentNode;
         let isRemoveInlist = false;
         this.frameList.forEach((val,i) => {
           if(deleteFrame === val.getFrame()) {
+
+            if(this.currentFrame === val) {
+              if(i) {
+              this.currentFrame = this.frameList[i - 1];
+              } else {
+                this.currentFrame = this.frameList[i + 1];
+              }
+              this.currentFrame.getFrame().classList.add('selected');
+              this.currentCanvas.setCanvasImage(this.currentFrame.getCanvasIcon());
+            }
+
             this.frameList.splice(i,1);
             isRemoveInlist = true;
           }
