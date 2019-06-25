@@ -14,14 +14,11 @@ export default class Eraser {
 
   set () {
     this.eraser.onclick = () => {
+    const ctx = this.currentCanvas.getContext('2d');
     this.currentCanvas.onmousedown = () => {
       this.currentCanvas.onmousemove = (event) => {
-        let x = Math.floor((this.currentCanvas.getAttribute("width") * event.offsetX) / WINDOW_SIZE);
-        let y = Math.floor((this.currentCanvas.getAttribute("width") * event.offsetY) / WINDOW_SIZE);
-        // eslint-disable-next-line no-console
-        console.log(x, y);
-
-        const ctx = this.currentCanvas.getContext('2d');
+        let x = Math.floor((this.currentCanvas.getAttribute('width') * event.offsetX) / WINDOW_SIZE);
+        let y = Math.floor((this.currentCanvas.getAttribute('height') * event.offsetY) / WINDOW_SIZE);
         ctx.clearRect(x,y,1,1);
       };
 

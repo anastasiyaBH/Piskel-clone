@@ -55,6 +55,7 @@ export default class Frame {
 
   setFrameIcon(icon) {
     let ctx = this.canvasIcon.getContext('2d');
+    ctx.clearRect(0,0,this.canvasIcon.getAttribute('width'),this.canvasIcon.getAttribute('height'));
 
     if (icon == null) {
       ctx.drawImage(this.currentCanvas.getCanvas(), 0, 0);
