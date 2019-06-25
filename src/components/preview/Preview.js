@@ -31,6 +31,11 @@ export default class Preview {
     this.range.setAttribute('step', '1');
     this.range.classList.add('preview-area__range');
 
+    this.speedLabel = document.createElement('span');
+    this.speedLabel.innerHTML = `${this.speedAnimation} FPS`;
+    this.speedLabel.classList.add('preview-area__speedLabel');
+    this.previewArea.appendChild(this.speedLabel);
+
     this.range.addEventListener('input', (e) => {
       let count = 0;
       // eslint-disable-next-line prefer-destructuring
@@ -38,7 +43,7 @@ export default class Preview {
       const frameList = this.frameList;
 
       function animation() {
-        if (frameList[count] === undefined) return;
+        if (frameList[count] == null) return;
         const destCtx = canvas.getContext('2d');
         destCtx.clearRect(0, 0, canvas.width, canvas.height);
         destCtx.drawImage(frameList[count].getCanvasIcon(), 0, 0);
@@ -50,6 +55,7 @@ export default class Preview {
       clearInterval(this.timerId);
 
       this.speedAnimation = +(e.target.value);
+      this.speedLabel.innerHTML = `${this.speedAnimation} SPF`;
 
       if (this.speedAnimation === 0) {
         clearInterval(this.timerId);
