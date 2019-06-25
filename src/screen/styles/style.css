@@ -50,7 +50,7 @@
 .tool-column, .frame-column{
   padding: 5px;
   /* border: 1px solid white; */
-  flex-basis: 10%;
+  flex-basis: 8%;
   height: 84vh;
 }
 
@@ -66,7 +66,7 @@
 
 .canvas-column{
   /* border: 1px solid white; */
-  flex-basis: 53%;
+  flex-basis: 70%;
 
   padding: 5px;
   display: flex;
@@ -138,7 +138,7 @@ color: #fff;
   display: flex;
   flex-direction: column;
   overflow: auto;
-  flex-basis: 14%;
+  flex-basis: 10%;
 }
 
 .frame-wrapper {
@@ -241,8 +241,8 @@ color: #fff;
 }
 
 .canvas-area {
-  width: 875px;
-  height: 525px;
+  width: 100%;
+  height: 100%;
   background-color: #a0a0a0;
   display: flex;
   justify-content: center;

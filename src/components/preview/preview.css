@@ -1,6 +1,6 @@
 .animation-column{
   /* border: 1px solid white;*/
-  flex-basis: 20%;
+  flex-basis: 10%;
   padding: 5px;
 
 }
@@ -18,7 +18,7 @@
 }
 
 .preview-area__range{
-margin: 0 5px;
+  width: 115px;
 }
 
 .preview-area__fullscreen-button {
@@ -29,4 +29,11 @@ margin: 0 5px;
 
   width: 26px;
   height: 26px;
+}
+
+.preview-area__speedLabel{
+  padding-top: 8px;
+  margin: 0 5px;
+  color: #aaa;
+  font-size: 12px;
 }
