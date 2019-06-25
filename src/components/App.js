@@ -7,6 +7,7 @@ import ColorSelector from './tools/ColorSelector'
 import AplicationActionWrapper from './containers/AplicationActionWrapper'
 import Resize from './aplication-action/Resize'
 import FrameWrapper from './containers/FrameWrapper'
+import Preview from '../components/preview/Preview'
 
 export default class App {
   constructor () {
@@ -19,6 +20,10 @@ export default class App {
     const actionWrapper = new AplicationActionWrapper();
     const frameWrapper = new FrameWrapper(canvas);
     frameWrapper.set();
+
+    const preview = new Preview (frameWrapper.getFrameList(), canvas);
+    preview;
+
 
     const pen = new Pen(canvas), eraser = new Eraser(canvas), paintBucket = new PaintBucket(canvas);
     const colorS = new ColorSelector();

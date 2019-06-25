@@ -148,4 +148,8 @@ export default class FrameWrapper {
       this.frameWrapper.addEventListener('mouseup', swap);
     }
   }
+
+  getFrameList(){
+    return this.frameList;
+  }
 }
