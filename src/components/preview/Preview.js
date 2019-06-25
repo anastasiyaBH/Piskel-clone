@@ -1,3 +1,5 @@
+import './preview.css'
+
 export default class Preview {
   constructor(frameList, canvas) {
 
@@ -13,10 +15,14 @@ export default class Preview {
 
     this.preview = document.createElement('canvas');
     this.preview.classList.add('preview-area__canvas');
+    this.preview.classList.add('canvas');
     this.preview.setAttribute('width', this.currentCanvas.getCanvas().getAttribute('width'));
     this.preview.setAttribute('height', this.currentCanvas.getCanvas().getAttribute('height'));
-
     this.previewArea.appendChild(this.preview);
+
+    this.button = document.createElement('button');
+    this.button.classList.add('preview-area__fullscreen-button');
+    this.previewArea.appendChild(this.button);
 
     this.range = document.createElement('input');
     this.range.setAttribute('type', 'range');
@@ -54,14 +60,9 @@ export default class Preview {
 
     this.previewArea.appendChild(this.range);
 
-    this.button = document.createElement('button');
-    this.button.classList.add('preview-area__fullscreen-button');
-    this.button.innerHTML = '<i class="fas fa-desktop"></i>';
-
     this.button.addEventListener('click', () => {
       this.preview.requestFullscreen();
     });
 
-    this.previewArea.appendChild(this.button);
   }
 }
