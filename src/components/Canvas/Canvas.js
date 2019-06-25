@@ -13,8 +13,6 @@ export default class Canvas {
     this.size = DEFAULT_SIZE;
 
     this.canvas.addEventListener ('mouseup', () => {
-      // eslint-disable-next-line no-console
-      console.log('!!!!!');
       this.canvas.dispatchEvent(new Event('canvas'));
     });
   }
@@ -31,5 +29,11 @@ export default class Canvas {
 
   getSize() {
     return this.size;
+  }
+
+  setCanvasImage(icon) {
+    let ctx = this.canvas.getContext('2d');
+    ctx.clearRect(0,0,this.canvas.getAttribute("width"),this.canvas.getAttribute("width"));
+    ctx.drawImage(icon, 0, 0);
   }
 }

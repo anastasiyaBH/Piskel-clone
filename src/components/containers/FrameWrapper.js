@@ -14,15 +14,19 @@ export default class FrameWrapper {
 
     this.addFrameButton = document.createElement('button');
     this.addFrameButton.className = 'frame-wrapper__add-frame-button';
-    this.addFrameButton.innerHTML = '<i class="fas fa-plus"></i> Add frame';
+    this.addFrameButton.innerHTML = 'Add frame';
     document.querySelector('.frame-column').appendChild(this.addFrameButton);
   }
 
   set() {
-    let addNewFrameFunction = () => {
-      let newFrame = new Frame(this.currentCanvas);
+    let addNewFrameFunction = (canvas) => {
+      let newFrame = new Frame(canvas);
+      if(this.currentFrame !== null) {
+        this.currentFrame.getFrame().classList.remove('selected');
+      }
       this.currentFrame = newFrame;
-      newFrame.setFrameIcon();
+      this.currentCanvas.setCanvasImage(this.currentFrame.getCanvasIcon());
+      this.currentFrame.getFrame().classList.add('selected');
       this.frameWrapper.appendChild(newFrame.getFrame());
       this.frameList.push(newFrame);
       this.frameList.forEach((val, i) => {
@@ -30,13 +34,73 @@ export default class FrameWrapper {
       });
     };
 
-    addNewFrameFunction();
+    addNewFrameFunction(this.currentCanvas);
 
-    this.addFrameButton.onclick = addNewFrameFunction;
 
     this.currentCanvas.getCanvas().addEventListener('canvas', () => {
       this.currentFrame.setFrameIcon();
     });
+
+    this.addFrameButton.onclick = () => {
+      addNewFrameFunction(this.currentCanvas);
   }
+
+    this.frameWrapper.onclick = (event) => {
+
+      if(event.target.classList.contains('delete-button')) {
+        let deleteFrame = event.target.parentNode.parentNode;
+        let isRemoveInlist = false;
+        this.frameList.forEach((val,i) => {
+          if(deleteFrame === val.getFrame()) {
+            this.frameList.splice(i,1);
+            isRemoveInlist = true;
+          }
+        });
+        if(isRemoveInlist) {
+          deleteFrame.remove();
+        }
+        this.frameList.forEach((val, i) => {
+          val.setNumber(i + 1);
+        });
+      }
+
+      if(event.target.classList.contains('duplicate-button')) {
+        let duplicateFrame = event.target.parentNode.parentNode;
+
+        this.frameList.forEach((val) => {
+          if(duplicateFrame === val.getFrame()) {
+            let copy = new Frame(this.currentCanvas);
+
+            copy.setFrameIcon(val.getCanvasIcon());
+            this.frameList.push(copy);
+
+            this.frameWrapper.appendChild(copy.getFrame());
+          }
+        });
+        this.frameList.forEach((val, i) => {
+          val.setNumber(i + 1);
+        });
+      }
+
+      if(event.target.classList.contains('frame-inform__frame-action')) {
+        let workFrame = event.target.parentNode;
+
+        this.frameList.forEach((val) => {
+          if(workFrame === val.getFrame()) {
+            this.currentFrame.getFrame().classList.remove('selected');
+
+            this.currentFrame = val;
+            this.currentFrame.getFrame().classList.add('selected');
+
+            this.currentCanvas.setCanvasImage(this.currentFrame.getCanvasIcon());
+          }
+        });
+        this.frameList.forEach((val, i) => {
+          val.setNumber(i + 1);
+        });
+      }
+    };
+  }
+
 
 }

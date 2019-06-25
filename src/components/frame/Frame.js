@@ -45,12 +45,23 @@ export default class Frame {
     return this.frame;
   }
 
+  getCanvasIcon() {
+    return this.canvasIcon;
+  }
+
   setNumber(number) {
     this.numberButton.innerHTML = number;
   }
 
-  setFrameIcon() {
+  setFrameIcon(icon) {
     let ctx = this.canvasIcon.getContext('2d');
-    ctx.drawImage(this.currentCanvas.getCanvas(), 0, 0);
+
+    if (icon == null) {
+      ctx.drawImage(this.currentCanvas.getCanvas(), 0, 0);
+    }
+    else {
+      ctx.drawImage(icon, 0, 0);
+    }
+
   }
 }
