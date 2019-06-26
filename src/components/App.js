@@ -8,6 +8,7 @@ import AplicationActionWrapper from './containers/AplicationActionWrapper'
 import Resize from './aplication-action/Resize'
 import FrameWrapper from './containers/FrameWrapper'
 import Preview from '../components/preview/Preview'
+import PaintSamePixels from './tools/PaintSamePixels'
 
 export default class App {
   constructor () {
@@ -26,6 +27,7 @@ export default class App {
 
 
     const pen = new Pen(canvas), eraser = new Eraser(canvas), paintBucket = new PaintBucket(canvas);
+    const paintSamePixels = new PaintSamePixels(canvas);
     const colorS = new ColorSelector();
 
     const resize = new Resize();
@@ -35,6 +37,7 @@ export default class App {
     pen.set();
     eraser.set();
     paintBucket.set();
+    paintSamePixels.set();
 
     resize.set();
 

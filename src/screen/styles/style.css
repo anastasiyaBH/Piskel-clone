@@ -73,13 +73,6 @@
   margin: auto;
 }
 
-.tool-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
 .aplication-action-wrapper{
   width: 100%;
   display: flex;
@@ -89,7 +82,7 @@
   margin: auto 0;
 }
 
-.tool-wrapper__tool, .aplication-action-wrapper__action {
+.aplication-action-wrapper__action {
 width: 44px;
 height: 44px;
 margin: 1px;
@@ -100,39 +93,6 @@ font-size: 16pt;
 color: #fff;
 }
 
-.palette-wrapper {
-  padding: 10px 5px;
-  width: 100%;
-  display: flex;
-  position: relative;
-}
-
-.palette-wrapper__color {
-  width: 53px;
-  height: 53px;
-  border: 3px solid #888;
-}
-
-.main-color {
-  z-index: 2;
-  background: url(../../assets/background.jpg);
-}
-
-.background-color {
-  z-index: 1;
-  position: absolute;
-  top: 40px;
-  right: 16px;
-  background: url(../../assets/background.jpg);
-}
-
-.palette-wrapper__change-button {
-  color:  #888;
-  font-size: 16pt;
-  position: absolute;
-  bottom: -20px;
-  left: 5px;
-}
 
 .frame-column {
   display: flex;
@@ -255,18 +215,6 @@ color: #fff;
 
 .resize {
   background-image: url(../../assets/resize.png);
-}
-
-.pen {
-  background-image: url(../../assets/pen.png);
-}
-
-.eraser {
-  background-image: url(../../assets/eraser.png);
-}
-
-.bucket {
-  background-image: url(../../assets/bucket.png);
 }
 
 .setting-column {
