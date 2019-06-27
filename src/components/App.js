@@ -10,6 +10,8 @@ import FrameWrapper from './containers/FrameWrapper'
 import Preview from '../components/preview/Preview'
 import PaintSamePixels from './tools/PaintSamePixels'
 import Rectangle from './tools/Rectangle'
+import Circle from './tools/Circle'
+import Stroke from './tools/Stroke'
 
 export default class App {
   constructor () {
@@ -31,6 +33,8 @@ export default class App {
     const paintSamePixels = new PaintSamePixels(canvas);
     const colorS = new ColorSelector();
     const rectangle = new Rectangle(canvas);
+    const circle = new Circle(canvas);
+    const stroke = new Stroke(canvas);
 
     const resize = new Resize();
 
@@ -40,6 +44,8 @@ export default class App {
     paintBucket.set();
     paintSamePixels.set();
     rectangle.set();
+    circle.set();
+    stroke.set();
 
     resize.set();
 
