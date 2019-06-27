@@ -71,3 +71,11 @@
 .rectangle {
   background-image: url(../../assets/rectangle-icon.png);
 }
+
+.circle {
+   background-image: url(../../assets/Circle-icon.png);
+}
+
+.stroke {
+  background-image: url(../../assets/Stroke-icon.png);
+}
