@@ -127,6 +127,7 @@ export default class PaintBucket {
       }
 
     };
+    this.currentCanvas.dispatchEvent(new Event('canvas'));
     };
   }
 }

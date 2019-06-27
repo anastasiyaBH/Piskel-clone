@@ -24,6 +24,7 @@ export default class Eraser {
 
       this.currentCanvas.onmouseup = () => {
         this.currentCanvas.onmousemove = null;
+        this.currentCanvas.dispatchEvent(new Event('canvas'));
       };
     };
   };

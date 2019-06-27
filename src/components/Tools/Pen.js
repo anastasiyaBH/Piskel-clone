@@ -2,6 +2,8 @@ const WINDOW_SIZE = 525;
 const LEFT_MOUSE_BUTTON = 1;
 const RIGHT_MOUSE_BUTTON = 3;
 
+import './tools.css';
+
 export default class Pen {
   constructor (canvas) {
     this.currentCanvas = canvas.getCanvas();
@@ -35,6 +37,7 @@ export default class Pen {
 
       this.currentCanvas.onmouseup = () => {
         this.currentCanvas.onmousemove = null;
+        this.currentCanvas.dispatchEvent(new Event('canvas'));
       };
     };
   };

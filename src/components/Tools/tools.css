@@ -67,3 +67,7 @@
 .paint-same-pixels {
   background-image: url(../../assets/PaintSamePixels-icon.png);
 }
+
+.rectangle {
+  background-image: url(../../assets/rectangle-icon.png);
+}

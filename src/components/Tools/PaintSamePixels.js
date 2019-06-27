@@ -63,6 +63,7 @@ export default class PaintSamePixels {
         ctx.putImageData(imgColor, 0, 0);
 
       };
+      this.currentCanvas.dispatchEvent(new Event('canvas'));
     };
   }
 }
