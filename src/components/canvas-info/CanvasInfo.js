@@ -31,7 +31,7 @@ export default class CanvasInfo {
       this.canvasCoordinates.innerHTML = `${x} : ${y}`;
     });
 
-    this.currentCanvas.addEventListener('mouseout', () => {
+    this.currentCanvas.addEventListener('mouseleave', () => {
       this.canvasCoordinates.classList.remove('enabled');
     });
 
