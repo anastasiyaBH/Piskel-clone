@@ -1,8 +1,4 @@
-/* eslint-disable no-console */
-const WINDOW_SIZE = 525;
-const LEFT_MOUSE_BUTTON = 1;
-const RIGHT_MOUSE_BUTTON = 3;
-const A = 255;
+import {LEFT_MOUSE_BUTTON, RIGHT_MOUSE_BUTTON, WINDOW_SIZE, ALPHA} from '../../const/const'
 
 export default class PaintSamePixels {
   constructor(canvas) {
@@ -25,7 +21,7 @@ export default class PaintSamePixels {
             r: arrRGB[0],
             g: arrRGB[1],
             b :arrRGB[2],
-            a: A,
+            a: ALPHA,
           }
         }
 

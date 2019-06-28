@@ -1,7 +1,6 @@
 import './action.css';
 import {isPositiveNumeric} from '../../additional/additional';
-
-const WINDOW_SIZE = 525;
+import {WINDOW_SIZE} from '../../const/const'
 
 export default class Resize {
   constructor() {

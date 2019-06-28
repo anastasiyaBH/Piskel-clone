@@ -1,4 +1,4 @@
-const WINDOW_SIZE = 525;
+import {WINDOW_SIZE} from '../../const/const'
 
 export default class Eraser {
   constructor (canvas) {

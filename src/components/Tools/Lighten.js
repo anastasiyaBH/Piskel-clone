@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-const WINDOW_SIZE = 525;
+import {WINDOW_SIZE} from '../../const/const'
 
 export default class Lighten {
   constructor(canvas) {

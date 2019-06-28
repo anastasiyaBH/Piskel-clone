@@ -1,6 +1,4 @@
-const WINDOW_SIZE = 525;
-const LEFT_MOUSE_BUTTON = 1;
-const RIGHT_MOUSE_BUTTON = 3;
+import {LEFT_MOUSE_BUTTON, RIGHT_MOUSE_BUTTON, WINDOW_SIZE} from '../../const/const'
 
 export default class PaintBucket {
   constructor (canvas) {
