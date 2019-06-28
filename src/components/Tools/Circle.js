@@ -3,51 +3,76 @@ const LEFT_MOUSE_BUTTON = 1;
 const RIGHT_MOUSE_BUTTON = 3;
 
 export default class Circle {
-  constructor (canvas) {
+  constructor(canvas) {
     this.currentCanvas = canvas.getCanvas();
 
-    this.rectangle = document.createElement('li');
-    this.rectangle.className = 'tool-wrapper__tool';
-    this.rectangle.classList.add('circle');
+    this.circle = document.createElement('li');
+    this.circle.className = 'tool-wrapper__tool';
+    this.circle.classList.add('circle');
 
-    document.querySelector('.tool-wrapper').appendChild(this.rectangle);
+    document.querySelector('.tool-wrapper').appendChild(this.circle);
   }
 
-  set () {
-    this.rectangle.onclick = () => {
-    this.currentCanvas.onmousedown = () => {
-      let startX = Math.floor((this.currentCanvas.getAttribute("width") * event.offsetX) / WINDOW_SIZE);
-      let startY = Math.floor((this.currentCanvas.getAttribute("height") * event.offsetY) / WINDOW_SIZE);
-
-      let currentX = 0;
-      let currentY = 0;
+  set() {
+    this.circle.onclick = () => {
       const ctx = this.currentCanvas.getContext('2d');
 
+      function putPixel(x, y) {
+        ctx.fillRect(x, y, 1, 1);
+      }
+
+      this.currentCanvas.onmousedown = () => {
+        let startCanvas = ctx.getImageData(0, 0, this.currentCanvas.getAttribute("width"), this.currentCanvas.getAttribute("height"));
+
+        if (event.which == LEFT_MOUSE_BUTTON) {
+          ctx.fillStyle = document.querySelector('.main-color').style.background;
+        }
+        if (event.which == RIGHT_MOUSE_BUTTON) {
+          ctx.fillStyle = document.querySelector('.background-color').style.background;
+        }
+
+        let startX = Math.floor((this.currentCanvas.getAttribute("width") * event.offsetX) / WINDOW_SIZE);
+        let startY = Math.floor((this.currentCanvas.getAttribute("height") * event.offsetY) / WINDOW_SIZE);
+
+        this.currentCanvas.onmousemove = () => {
+          ctx.putImageData(startCanvas, 0, 0);
+
+          let currentX = Math.floor((this.currentCanvas.getAttribute("width") * event.offsetX) / WINDOW_SIZE);
+          let currentY = Math.floor((this.currentCanvas.getAttribute("height") * event.offsetY) / WINDOW_SIZE);
+
+          let r = parseInt(Math.sqrt(Math.pow(startX - currentX, 2) + Math.pow(startY - currentY, 2)) / 2);
+          let x = parseInt(startX + (currentX - startX) / 2);
+          let y = parseInt(startY + (currentY - startY) / 2);
+
+          var x0 = 0, y0 = r, gap = 0, delta = (2 - 2 * r);
+
+          while (y0 >= 0) {
+            putPixel(x + x0, y - y0);
+            putPixel(x - x0, y - y0);
+            putPixel(x - x0, y + y0);
+            putPixel(x + x0, y + y0);
+            gap = 2 * (delta + y0) - 1;
+            if (delta < 0 && gap <= 0) {
+              x0++;
+              delta += 2 * x0 + 1;
+              continue;
+            }
+            if (delta > 0 && gap > 0) {
+              y0--;
+              delta -= 2 * y0 + 1;
+              continue;
+            }
+            x0++;
+            delta += 2 * (x0 - y0);
+            y0--;
+          }
+        }
+      };
+
       this.currentCanvas.onmouseup = () => {
-
-        if(event.which == LEFT_MOUSE_BUTTON) {
-          ctx.strokeStyle = document.querySelector('.main-color').style.background;
-        }
-
-        if(event.which == RIGHT_MOUSE_BUTTON) {
-          ctx.strokeStyle = document.querySelector('.background-color').style.background;
-        }
-
-        currentX = Math.floor((this.currentCanvas.getAttribute("width") * event.offsetX) / WINDOW_SIZE);
-        currentY = Math.floor((this.currentCanvas.getAttribute("height") * event.offsetY) / WINDOW_SIZE);
-
-        ctx.beginPath();
-        let r = parseInt (Math.sqrt(Math.pow(currentX - startX,2) + Math.pow(currentY - startY,2)) / 2) + 0.5;
-        let x = startX + (currentX - startX) /2.;
-        let y = startY + (currentY - startY) /2.;
-        // eslint-disable-next-line no-console
-        console.log(x,y,r);
-        ctx.arc(x,y ,r ,0,Math.PI * 2,true);
-        ctx.stroke();
-
         this.currentCanvas.dispatchEvent(new Event('canvas'));
+        this.currentCanvas.onmousemove = null;
       };
     };
-  };
   }
 }

@@ -6,8 +6,10 @@
 }
 
 .tool-wrapper__tool {
-  width: 44px;
-  height: 44px;
+  width: 37px;
+  height: 37px;
+
+  border: 3px solid #444;
   margin: 1px;
   background-color: #444;
   display: flex;
