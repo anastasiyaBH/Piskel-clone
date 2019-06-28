@@ -1,0 +1,19 @@
+.canvas-info {
+  width: 100%;
+  display:flex;
+  justify-content: space-evenly;
+  padding: 20px 0;
+}
+
+.canvas-info__canvas-size, .canvas-info__canvas-coordinates {
+  color: #ffd700;
+  font-size: 12px;
+}
+
+.canvas-info__canvas-coordinates {
+  visibility: hidden;
+}
+
+.enabled{
+  visibility: visible;
+}

@@ -13,6 +13,7 @@ import Rectangle from './tools/Rectangle'
 import Circle from './tools/Circle'
 import Stroke from './tools/Stroke'
 import Lighten from './tools/Lighten'
+import CanvasInfo from './canvas-info/CanvasInfo';
 
 export default class App {
   constructor () {
@@ -38,7 +39,8 @@ export default class App {
     const stroke = new Stroke(canvas);
     const lighten = new Lighten(canvas);
 
-    const resize = new Resize();
+    const resize = new Resize(canvas);
+    const canvasInfo = new CanvasInfo(canvas);
 
     colorS.set();
     pen.set();
@@ -51,6 +53,7 @@ export default class App {
     lighten.set();
 
     resize.set();
+    canvasInfo.set();
 
     actionWrapper.set();
     toolsWrapper.set();

@@ -3,12 +3,14 @@ import {isPositiveNumeric} from '../../additional/additional';
 import {WINDOW_SIZE} from '../../const/const'
 
 export default class Resize {
-  constructor() {
+  constructor(canvas) {
     this.resize = document.createElement('div');
     this.resize.classList.add('aplication-action-wrapper__action');
     this.resize.classList.add('resize');
 
     document.querySelector('.aplication-action-wrapper').appendChild(this.resize);
+
+    this.currentCanvas = canvas;
   }
 
   set () {
@@ -55,6 +57,8 @@ export default class Resize {
             val.setAttribute("height", `${height}`);
             destCtx = val.getContext('2d');
             destCtx.drawImage(scanvas, 0, 0);
+
+            this.currentCanvas.getCanvas().dispatchEvent(new Event('resize'));
 
             let openSetting = document.querySelector('.enabled');
             if (openSetting) {
