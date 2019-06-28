@@ -12,6 +12,7 @@ import PaintSamePixels from './tools/PaintSamePixels'
 import Rectangle from './tools/Rectangle'
 import Circle from './tools/Circle'
 import Stroke from './tools/Stroke'
+import Lighten from './tools/Lighten'
 
 export default class App {
   constructor () {
@@ -35,6 +36,7 @@ export default class App {
     const rectangle = new Rectangle(canvas);
     const circle = new Circle(canvas);
     const stroke = new Stroke(canvas);
+    const lighten = new Lighten(canvas);
 
     const resize = new Resize();
 
@@ -46,6 +48,7 @@ export default class App {
     rectangle.set();
     circle.set();
     stroke.set();
+    lighten.set();
 
     resize.set();
 
