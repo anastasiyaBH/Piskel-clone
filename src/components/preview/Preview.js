@@ -35,7 +35,8 @@ export default class Preview {
     this.speedLabel.innerHTML = `${this.speedAnimation} FPS`;
     this.speedLabel.classList.add('preview-area__speedLabel');
     this.previewArea.appendChild(this.speedLabel);
-
+  }
+    set() {
     this.range.addEventListener('input', (e) => {
       let count = 0;
       // eslint-disable-next-line prefer-destructuring

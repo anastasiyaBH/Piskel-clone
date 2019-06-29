@@ -61,6 +61,9 @@ export default class Frame {
       ctx.drawImage(this.currentCanvas.getCanvas(), 0, 0);
     }
     else {
+      icon.onload = () => {
+        ctx.drawImage(icon, 0, 0);
+      };
       ctx.drawImage(icon, 0, 0);
     }
 

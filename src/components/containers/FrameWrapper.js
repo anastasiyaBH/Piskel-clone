@@ -18,12 +18,17 @@ export default class FrameWrapper {
     document.querySelector('.frame-column').appendChild(this.addFrameButton);
   }
 
-  set() {
-    let addNewFrameFunction = (canvas) => {
-      let newFrame = new Frame(canvas);
+  addNewFrameFunction(icon) {
+
+      let newFrame = new Frame(this.currentCanvas);
       if (this.currentFrame !== null) {
         this.currentFrame.getFrame().classList.remove('selected');
       }
+
+      if(icon != null) {
+      newFrame.setFrameIcon(icon);
+      }
+
       this.currentFrame = newFrame;
       this.currentCanvas.setCanvasImage(this.currentFrame.getCanvasIcon());
       this.currentFrame.getFrame().classList.add('selected');
@@ -32,16 +37,19 @@ export default class FrameWrapper {
       this.frameList.forEach((val, i) => {
         val.setNumber(i + 1);
       });
-    };
+  }
 
-    addNewFrameFunction(this.currentCanvas);
+  set() {
+    if(this.frameList.length === 0){
+    this.addNewFrameFunction();
+    }
 
     this.currentCanvas.getCanvas().addEventListener('canvas', () => {
       this.currentFrame.setFrameIcon();
     });
 
     this.addFrameButton.onclick = () => {
-      addNewFrameFunction(this.currentCanvas);
+      this.addNewFrameFunction();
     }
 
     this.frameWrapper.onclick = (event) => {

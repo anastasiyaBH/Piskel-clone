@@ -33,11 +33,23 @@ export default class App {
 
     const toolsWrapper = new ToolsWrapper();
     const actionWrapper = new AplicationActionWrapper();
-    const frameWrapper = new FrameWrapper(canvas);
+
+    let frameWrapper = new FrameWrapper(canvas);
+
+    let data = localStorage.getItem('frameList');
+    if(data != null) {
+      let frameListObj = JSON.parse(data);
+      for(let key in frameListObj) {
+        let img = new Image;
+        img.src = frameListObj[key];
+        frameWrapper.addNewFrameFunction(img);
+      }
+    }
+
     frameWrapper.set();
 
     const preview = new Preview (frameWrapper.getFrameList(), canvas);
-    preview;
+    preview.set();
 
     const pen = new Pen(canvas), eraser = new Eraser(canvas), paintBucket = new PaintBucket(canvas);
     const paintSamePixels = new PaintSamePixels(canvas);
@@ -67,6 +79,13 @@ export default class App {
 
     actionWrapper.set();
     toolsWrapper.set();
-  }
 
+    window.onbeforeunload = () => {
+      let frameListObj = {};
+      frameWrapper.getFrameList().forEach((value,i) => {
+        frameListObj[i] = value.getCanvasIcon().toDataURL();
+      });
+      localStorage.setItem('frameList', JSON.stringify(frameListObj));
+    };
+  }
 }
