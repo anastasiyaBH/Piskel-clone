@@ -1,6 +1,46 @@
+.loading-window {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: #1D1D1D;
+  z-index: 30;
+  display:flex;
+  justify-content: center;
+}
+
+.loading-contpre {
+  margin: auto;
+  width: 250px;
+  height: 100px;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.loading-contpre__animation {
+  width: 40px;
+  height: 40px;
+  background: url(../../assets/loading.svg) center center no-repeat;
+  background-size: 40px;
+  margin: auto;
+}
+
+.loading-contpre__text {
+  color: #fff;
+  font-size: 20px;
+  margin: auto;
+}
+
+.hidden {
+  visibility: hidden;
+}
+/**************************************************************/
+
 .gray {
   background: #2b2b2b;
-  border:3px solid #444;
+  border: 3px solid #444;
   color: #fff;
 }
 
@@ -20,18 +60,18 @@
 }
 
 .canvas {
-  background:url(../../assets/background.png);
+  background: url(../../assets/background.png);
   background-repeat: repeat;
   image-rendering: pixelated;
 }
 
-.logo-link{
+.logo-link {
   background: url(../../assets/piskel-logo.png);
   height: 24px;
   width: 85px;
 }
 
-.header__project-name{
+.header__project-name {
   margin: 0;
   width: 100%;
   text-align: center;
@@ -47,14 +87,14 @@
   justify-content: space-between;
 }
 
-.tool-column, .frame-column{
+.tool-column, .frame-column {
   padding: 5px;
   /* border: 1px solid white; */
   flex-basis: 8%;
   height: 84vh;
 }
 
-.aplication-action-column{
+.aplication-action-column {
   padding: 5px;
   /*border: 1px solid white;*/
   flex-basis: 3%;
@@ -64,16 +104,15 @@
   justify-content: center;
 }
 
-.canvas-column{
+.canvas-column {
   /* border: 1px solid white; */
   flex-basis: 70%;
-
   padding: 5px;
   display: flex;
   margin: auto;
 }
 
-.aplication-action-wrapper{
+.aplication-action-wrapper {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -83,16 +122,15 @@
 }
 
 .aplication-action-wrapper__action {
-width: 44px;
-height: 44px;
-margin: 1px;
-background-color: #444;
-display: flex;
-justify-content: center;
-font-size: 16pt;
-color: #fff;
+  width: 44px;
+  height: 44px;
+  margin: 1px;
+  background-color: #444;
+  display: flex;
+  justify-content: center;
+  font-size: 16pt;
+  color: #fff;
 }
-
 
 .frame-column {
   display: flex;
@@ -131,8 +169,8 @@ color: #fff;
   z-index: 2;
 }
 
-.frame-inform__frame-action:hover{
-  opacity : 1;
+.frame-inform__frame-action:hover {
+  opacity: 1;
   z-index: 2;
 }
 
@@ -140,18 +178,18 @@ color: #fff;
   border: 3px solid #ffd700;
 }
 
-.selected:hover{
+.selected:hover {
   border: 3px solid #ffd700;
 }
 
-.frame-inform__canvas-icon{
+.frame-inform__canvas-icon {
   width: 96px;
   height: 96px;
   position: relative;
   z-index: 1;
 }
 
-.frame-inform__button{
+.frame-inform__button {
   background-color: #4545458a;
   color: #fff;
   font-size: 16pt;
@@ -189,11 +227,11 @@ color: #fff;
 
 .frame-wrapper__add-frame-button {
   border: 3px solid #888;
-    color: #888;
-    background: #222;
-    width: 101px;
-    text-align: center;
-    padding: 10px 0;
+  color: #888;
+  background: #222;
+  width: 101px;
+  text-align: center;
+  padding: 10px 0;
 }
 
 .frame-wrapper__add-frame-button:hover {
@@ -213,4 +251,5 @@ color: #fff;
   height: 525px;
 }
 
+/********************************************************************************************************/
 

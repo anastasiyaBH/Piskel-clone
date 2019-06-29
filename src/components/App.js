@@ -20,6 +20,13 @@ export default class App {
   }
 
   start () {
+
+    const loadingWindow = document.querySelector('.loading-window');
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        loadingWindow.classList.add('hidden')}, 700);
+    });
+
     const canvas = new Canvas();
 
     const toolsWrapper = new ToolsWrapper();
@@ -29,7 +36,6 @@ export default class App {
 
     const preview = new Preview (frameWrapper.getFrameList(), canvas);
     preview;
-
 
     const pen = new Pen(canvas), eraser = new Eraser(canvas), paintBucket = new PaintBucket(canvas);
     const paintSamePixels = new PaintSamePixels(canvas);

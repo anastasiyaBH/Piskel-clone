@@ -3,7 +3,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/script.js',
+  entry:'./src/script.js'
+  ,
   output: {
     filename: 'app.bundle.js',
     path: path.resolve(__dirname, 'dist'),
@@ -24,12 +25,32 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(png|jpg)$/,
+        test: /\.(png|jpg|svg)$/,
         loader: 'url-loader'
       },
+      /* {
+        test: /\.(html)$/,
+        use: [
+          {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'edit/'
+          }
+        }
+        ],
+        exclude: path.resolve(__dirname,'src/screen/index.html'),
+      } */
     ],
   },
-  plugins: [new HtmlWebpackPlugin({
-    template: './src/screen/index.html',
-  })],
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: './src/screen/index.html',
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'edit/index.html',
+      template: './src/screen/edit/index.html',
+    }),
+  ],
 };
