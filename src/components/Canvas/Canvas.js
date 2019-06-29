@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const DEFAULT_SIZE = 32;
 
 export default class Canvas {
@@ -11,6 +12,12 @@ export default class Canvas {
     document.querySelector('.canvas-area').appendChild(this.canvas);
 
     this.size = DEFAULT_SIZE;
+
+    this.canvas.addEventListener('click', () => {
+      // eslint-disable-next-line no-console
+      console.log('!!!!!!!!!!!');
+      localStorage.setItem('canvas', this.canvas.toDataURL());
+    });
   }
 
   clear() {
@@ -21,6 +28,19 @@ export default class Canvas {
 
   getCanvas() {
     return this.canvas;
+  }
+
+  setCanvasData() {
+    let data = localStorage.getItem('canvas');
+    console.log(data);
+    if(data != null) {
+      var ctx = this.canvas.getContext('2d');
+      let img = new Image;
+      img.src = data;
+      img.onload = () => {
+        ctx.drawImage(img, 0, 0);
+      };
+    }
   }
 
   getSize() {

@@ -29,6 +29,7 @@ export default class App {
     });
 
     const canvas = new Canvas();
+    canvas.setCanvasData();
 
     const toolsWrapper = new ToolsWrapper();
     const actionWrapper = new AplicationActionWrapper();
