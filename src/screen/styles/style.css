@@ -67,6 +67,7 @@
 
 .logo-link {
   background: url(../../assets/piskel-logo.png);
+  background-repeat: no-repeat;
   height: 24px;
   width: 85px;
 }

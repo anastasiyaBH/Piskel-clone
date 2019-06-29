@@ -3,12 +3,15 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry:'./src/script.js'
-  ,
-  output: {
-    filename: 'app.bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+  entry:
+  {main: './src/script.js',
+  landing: './src/landing.js',
   },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
+    filename: '[name].bundle.js',
+},
   devtool: 'source-map',
   module: {
     rules: [
@@ -28,29 +31,18 @@ module.exports = {
         test: /\.(png|jpg|svg)$/,
         loader: 'url-loader'
       },
-      /* {
-        test: /\.(html)$/,
-        use: [
-          {
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-            outputPath: 'edit/'
-          }
-        }
-        ],
-        exclude: path.resolve(__dirname,'src/screen/index.html'),
-      } */
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './src/screen/index.html',
+      chunks:['landing'],
     }),
     new HtmlWebpackPlugin({
       filename: 'edit/index.html',
       template: './src/screen/edit/index.html',
+      chunks:['main'],
     }),
   ],
 };
