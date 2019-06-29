@@ -18,6 +18,10 @@
   color: #fff;
   }
 
+  .selected {
+    border: 3px solid #ffd700;
+  }
+
 
 .palette-wrapper {
   padding: 10px 5px;
@@ -84,4 +88,8 @@
 
 .lighten {
   background-image: url(../../assets/lighten-icon.png);
+}
+
+.move {
+  background-image: url(../../assets/move-icon.png);
 }

@@ -14,6 +14,7 @@ import Circle from './tools/Circle'
 import Stroke from './tools/Stroke'
 import Lighten from './tools/Lighten'
 import CanvasInfo from './canvas-info/CanvasInfo';
+import Move from './tools/Move'
 
 export default class App {
   constructor () {
@@ -44,6 +45,7 @@ export default class App {
     const circle = new Circle(canvas);
     const stroke = new Stroke(canvas);
     const lighten = new Lighten(canvas);
+    const move = new Move(canvas);
 
     const resize = new Resize(canvas);
     const canvasInfo = new CanvasInfo(canvas);
@@ -57,6 +59,7 @@ export default class App {
     circle.set();
     stroke.set();
     lighten.set();
+    move.set();
 
     resize.set();
     canvasInfo.set();
