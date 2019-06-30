@@ -1,5 +1,4 @@
-/* eslint-disable no-console */
-const DEFAULT_SIZE = 32;
+import { DEFAULT_SIZE } from '../../const/const'
 
 export default class Canvas {
   constructor () {
@@ -14,8 +13,6 @@ export default class Canvas {
     this.size = DEFAULT_SIZE;
 
     this.canvas.addEventListener('click', () => {
-      // eslint-disable-next-line no-console
-      console.log('!!!!!!!!!!!');
       localStorage.setItem('canvas', this.canvas.toDataURL());
     });
   }
@@ -32,7 +29,6 @@ export default class Canvas {
 
   setCanvasData() {
     let data = localStorage.getItem('canvas');
-    console.log(data);
     if(data != null) {
       var ctx = this.canvas.getContext('2d');
       let img = new Image;
