@@ -2,7 +2,7 @@ import './canvas.css'
 import { DEFAULT_SIZE } from '../../const/const'
 
 export default class Canvas {
-  constructor () {
+  constructor() {
     this.canvas = document.createElement('canvas');
     this.canvas.setAttribute('width', DEFAULT_SIZE);
     this.canvas.setAttribute('height', DEFAULT_SIZE);
@@ -14,7 +14,10 @@ export default class Canvas {
     this.size = DEFAULT_SIZE;
 
     this.canvas.addEventListener('click', () => {
-      localStorage.setItem('canvas', this.canvas.toDataURL());
+      let img = this.canvas.toDataURL();
+      localStorage.setItem('canvas', img);
+      localStorage.setItem('width', this.canvas.getAttribute('width'));
+      localStorage.setItem('height', this.canvas.getAttribute('height'));
     });
   }
 
@@ -30,10 +33,15 @@ export default class Canvas {
 
   setCanvasData() {
     let data = localStorage.getItem('canvas');
-    if(data != null) {
+    let width = localStorage.getItem('width');
+    let height = localStorage.getItem('height');
+
+    if (data != null && width != null && height != null) {
       var ctx = this.canvas.getContext('2d');
       let img = new Image;
       img.src = data;
+      this.canvas.setAttribute('width', width);
+      this.canvas.setAttribute('height', height);
       img.onload = () => {
         ctx.drawImage(img, 0, 0);
       };
@@ -46,7 +54,7 @@ export default class Canvas {
 
   setCanvasImage(icon) {
     let ctx = this.canvas.getContext('2d');
-    ctx.clearRect(0,0,this.canvas.getAttribute("width"),this.canvas.getAttribute("width"));
+    ctx.clearRect(0, 0, this.canvas.getAttribute("width"), this.canvas.getAttribute("width"));
     ctx.drawImage(icon, 0, 0);
   }
 }

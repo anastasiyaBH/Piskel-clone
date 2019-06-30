@@ -37,6 +37,8 @@ export default class App {
     const toolsWrapper = new ToolsWrapper();
     const actionWrapper = new AplicationActionWrapper();
 
+    // eslint-disable-next-line no-console
+    console.log(canvas, canvas.getCanvas());
     let frameWrapper = new FrameWrapper(canvas);
 
     let data = localStorage.getItem('frameList');
