@@ -1,6 +1,6 @@
 import './action.css';
-import {isPositiveNumeric} from '../../additional/additional';
-import {WINDOW_SIZE} from '../../const/const'
+import { isPositiveNumeric } from '../../additional/additional';
+import { WINDOW_SIZE } from '../../const/const'
 
 export default class Resize {
   constructor(canvas) {
@@ -13,16 +13,16 @@ export default class Resize {
     this.currentCanvas = canvas;
   }
 
-  set () {
+  set() {
     this.resize.onclick = () => {
 
-      if(this.resize.classList.contains('selected-action')) return;
+      if (this.resize.classList.contains('selected-action')) return;
 
       let settingColumn = document.querySelector('.setting-column');
       settingColumn.classList.add('enabled');
 
       settingColumn.innerHTML =
-      `<h3 class="setting-column__name">Resize</h3>
+        `<h3 class="setting-column__name">Resize</h3>
       <form class="setting-form">
       <div class="input-area">
           <span class="setting-form__text">Width</span>
@@ -37,7 +37,7 @@ export default class Resize {
         <button class="setting-form__button" type>Resize</button>
       </form>`;
 
-      let form =  document.querySelector('.setting-form');
+      let form = document.querySelector('.setting-form');
 
       let closeButton = document.createElement('button');
       closeButton.className = 'setting-column__close-button';
@@ -49,14 +49,14 @@ export default class Resize {
         this.resize.classList.remove('selected-action');
       });
 
-      form.addEventListener('submit',(event) => {
+      form.addEventListener('submit', (event) => {
         event.preventDefault();
         let inputTextWidth = settingColumn.querySelector('.input-width');
         let inputTextHeight = settingColumn.querySelector('.input-height');
 
-        if(isPositiveNumeric(inputTextWidth.value) && isPositiveNumeric(inputTextHeight.value)) {
-          let width = (+(inputTextWidth.value) > WINDOW_SIZE ) ? WINDOW_SIZE : inputTextWidth.value;
-          let height = (+(inputTextHeight.value) > WINDOW_SIZE ) ? WINDOW_SIZE : inputTextHeight.value;
+        if (isPositiveNumeric(inputTextWidth.value) && isPositiveNumeric(inputTextHeight.value)) {
+          let width = (+(inputTextWidth.value) > WINDOW_SIZE) ? WINDOW_SIZE : inputTextWidth.value;
+          let height = (+(inputTextHeight.value) > WINDOW_SIZE) ? WINDOW_SIZE : inputTextHeight.value;
 
           let canvasList = document.querySelectorAll('.canvas');
           canvasList.forEach((val) => {
@@ -71,21 +71,21 @@ export default class Resize {
             val.setAttribute("height", `${height}`);
             destCtx = val.getContext('2d');
             destCtx.drawImage(scanvas, 0, 0);
-
-            this.currentCanvas.getCanvas().dispatchEvent(new Event('resize'));
-
-            let openSetting = document.querySelector('.enabled');
-            if (openSetting) {
-              openSetting.classList.remove('enabled');
-            }
-
-            let selectedAction = document.querySelector('.selected-action');
-            if (selectedAction) {
-              selectedAction.classList.remove('selected-action');
-            }
           });
+
+          this.currentCanvas.getCanvas().dispatchEvent(new Event('resize'));
+
+          let openSetting = document.querySelector('.enabled');
+          if (openSetting) {
+            openSetting.classList.remove('enabled');
+          }
+
+          let selectedAction = document.querySelector('.selected-action');
+          if (selectedAction) {
+            selectedAction.classList.remove('selected-action');
+          }
         }
-    });
+      });
     };
   }
 
