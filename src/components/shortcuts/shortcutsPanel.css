@@ -79,6 +79,7 @@
   width: 20px;
   text-align: center;
   flex-basis: 5%;
+  text-transform: uppercase;
 }
 
 .enabled {
