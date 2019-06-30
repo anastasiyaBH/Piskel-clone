@@ -1,3 +1,4 @@
+import './canvas.css'
 import { DEFAULT_SIZE } from '../../const/const'
 
 export default class Canvas {

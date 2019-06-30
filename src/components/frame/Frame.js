@@ -1,3 +1,5 @@
+import './frame.css'
+
 export default class Frame {
   constructor(canvas) {
     this.currentCanvas = canvas;
