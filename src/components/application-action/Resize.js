@@ -24,18 +24,32 @@ export default class Resize {
       settingColumn.innerHTML =
       `<h3 class="setting-column__name">Resize</h3>
       <form class="setting-form">
+      <div class="input-area">
           <span class="setting-form__text">Width</span>
           <input class="setting-form__input-text input-width" type="text" width="20">
           <span class="setting-form__text">px</span>
+      </div>
+      <div class="input-area">
           <span class="setting-form__text">Height</span>
           <input class="setting-form__input-text input-height" type="text" width="20">
           <span class="setting-form__text">px</span>
+      </div>
         <button class="setting-form__button" type>Resize</button>
       </form>`;
 
       let form =  document.querySelector('.setting-form');
 
-      form.onsubmit = (event) => {
+      let closeButton = document.createElement('button');
+      closeButton.className = 'setting-column__close-button';
+      closeButton.innerHTML = 'X';
+      document.querySelector('.setting-column').appendChild(closeButton);
+
+      closeButton.addEventListener('click', () => {
+        settingColumn.classList.remove('enabled');
+        this.resize.classList.remove('selected-action');
+      });
+
+      form.addEventListener('submit',(event) => {
         event.preventDefault();
         let inputTextWidth = settingColumn.querySelector('.input-width');
         let inputTextHeight = settingColumn.querySelector('.input-height');
@@ -71,7 +85,7 @@ export default class Resize {
             }
           });
         }
-    };
+    });
     };
   }
 

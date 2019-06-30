@@ -23,6 +23,12 @@
   visibility: visible;
 }
 
+.input-area {
+  display: flex;
+  justify-content: space-around;
+  margin: 5px;
+}
+
 /****************************************************/
 .setting-column__name {
   text-transform: uppercase;
@@ -36,6 +42,7 @@
 .setting-form__text {
   color: #888;
   font-size: 12px;
+  flex-basis: 50%;
 }
 
 .setting-form__input-text{
@@ -43,6 +50,7 @@
   color: #fff;
   font-size: 12px;
   border: 1px solid #888;
+  margin-right: 5px;
 }
 
 .setting-form__button{
@@ -62,4 +70,17 @@
 
 .input-width, .input-height {
   width: 30px;
+}
+
+.setting-column__close-button {
+  background: none;
+  border: 3px solid #444;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.setting-column__close-button:hover {
+  border: 3px solid #ffd700;
 }
