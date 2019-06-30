@@ -4,21 +4,22 @@ export default class ToolsWrapper {
     this.toolsWrapper.className = 'tool-wrapper';
 
     const toolColumn = document.querySelector('.tool-column');
-    toolColumn.insertBefore(this.toolsWrapper,toolColumn.firstChild);
+    toolColumn.insertBefore(this.toolsWrapper, toolColumn.firstChild);
   }
 
-  set () {
-    this.toolsWrapper.onclick = (event) => {
+  set() {
+    const fun = (event) => {
+      if (event.target.classList.contains('tool-wrapper__tool')) {
+        document.querySelectorAll('.tool-wrapper__tool').forEach((value) => {
+          if (value.classList.contains('selected')) {
+            value.classList.remove('selected');
+          }
+        });
+        event.target.classList.add('selected');
+      }
+    };
 
-    if(event.target.classList.contains('tool-wrapper__tool')) {
+    this.toolsWrapper.addEventListener('tool', fun);
 
-      document.querySelectorAll('.tool-wrapper__tool').forEach((value) => {
-        if(value.classList.contains('selected')) {
-          value.classList.remove('selected');
-        }
-      });
-      event.target.classList.add('selected');
-    }
-  };
   }
 }

@@ -15,17 +15,19 @@ import Stroke from './tools/Stroke'
 import Lighten from './tools/Lighten'
 import CanvasInfo from './canvas-info/CanvasInfo';
 import Move from './tools/Move'
+import * as shortcats from './shortcuts/shortcuts'
 
 export default class App {
-  constructor () {
+  constructor() {
   }
 
-  start () {
+  start() {
 
     const loadingWindow = document.querySelector('.loading-window');
     document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
-        loadingWindow.classList.add('hidden')}, 700);
+        loadingWindow.classList.add('hidden')
+      }, 700);
     });
 
     const canvas = new Canvas();
@@ -37,9 +39,9 @@ export default class App {
     let frameWrapper = new FrameWrapper(canvas);
 
     let data = localStorage.getItem('frameList');
-    if(data != null) {
+    if (data != null) {
       let frameListObj = JSON.parse(data);
-      for(let key in frameListObj) {
+      for (let key in frameListObj) {
         let img = new Image;
         img.src = frameListObj[key];
         frameWrapper.addNewFrameFunction(img);
@@ -48,22 +50,23 @@ export default class App {
 
     frameWrapper.set();
 
-    const preview = new Preview (frameWrapper.getFrameList(), canvas);
+    const preview = new Preview(frameWrapper.getFrameList(), canvas);
     preview.set();
 
-    const pen = new Pen(canvas), eraser = new Eraser(canvas), paintBucket = new PaintBucket(canvas);
-    const paintSamePixels = new PaintSamePixels(canvas);
-    const colorS = new ColorSelector();
-    const rectangle = new Rectangle(canvas);
-    const circle = new Circle(canvas);
-    const stroke = new Stroke(canvas);
-    const lighten = new Lighten(canvas);
-    const move = new Move(canvas);
+    const pen = new Pen(canvas),
+      eraser = new Eraser(canvas),
+      paintBucket = new PaintBucket(canvas),
+      paintSamePixels = new PaintSamePixels(canvas),
+      colorSelector = new ColorSelector(),
+      rectangle = new Rectangle(canvas),
+      circle = new Circle(canvas),
+      stroke = new Stroke(canvas),
+      lighten = new Lighten(canvas),
+      move = new Move(canvas),
+      resize = new Resize(canvas),
+      canvasInfo = new CanvasInfo(canvas);
 
-    const resize = new Resize(canvas);
-    const canvasInfo = new CanvasInfo(canvas);
-
-    colorS.set();
+    colorSelector.set();
     pen.set();
     eraser.set();
     paintBucket.set();
@@ -80,9 +83,57 @@ export default class App {
     actionWrapper.set();
     toolsWrapper.set();
 
+    window.addEventListener('keydown', (event) => {
+      switch (event.key) {
+        case shortcats.penShortcut, shortcats.penShortcut.toLocaleLowerCase(): {
+          pen.start();
+          break;
+        }
+        case shortcats.circleShortcut, shortcats.circleShortcut.toLocaleLowerCase(): {
+          circle.start();
+          break;
+        }
+        case shortcats.eraserShortcut, shortcats.eraserShortcut.toLocaleLowerCase(): {
+          eraser.start();
+          break;
+        }
+        case shortcats.lightenShortcut, shortcats.lightenShortcut.toLocaleLowerCase(): {
+          lighten.start();
+          break;
+        }
+        case shortcats.moveShortcut, shortcats.moveShortcut.toLocaleLowerCase(): {
+          move.start();
+          break;
+        }
+        case shortcats.paintBucketShortcut, shortcats.paintBucketShortcut.toLocaleLowerCase(): {
+          paintBucket.start();
+          break;
+        }
+        case shortcats.paintSamePixelsShortcut, shortcats.paintSamePixelsShortcut.toLocaleLowerCase(): {
+          paintSamePixels.start();
+          break;
+        }
+        case shortcats.rectngleShortcut, shortcats.rectngleShortcut.toLocaleLowerCase(): {
+          rectangle.start();
+          break;
+        }
+        case shortcats.strokeShortcut, shortcats.strokeShortcut.toLocaleLowerCase(): {
+          stroke.start();
+          break;
+        }
+        case shortcats.swapColorShortcut, shortcats.swapColorShortcut.toLocaleLowerCase(): {
+          colorSelector.swap();
+          break;
+        }
+        default: {
+          return;
+        }
+      }
+    });
+
     window.onbeforeunload = () => {
       let frameListObj = {};
-      frameWrapper.getFrameList().forEach((value,i) => {
+      frameWrapper.getFrameList().forEach((value, i) => {
         frameListObj[i] = value.getCanvasIcon().toDataURL();
       });
       localStorage.setItem('frameList', JSON.stringify(frameListObj));

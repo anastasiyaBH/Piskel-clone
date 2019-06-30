@@ -1,0 +1,10 @@
+export let penShortcut = 'P';
+export let eraserShortcut = 'E';
+export let paintBucketShortcut = 'B';
+export let swapColorShortcut = 'X';
+export let paintSamePixelsShortcut = 'A';
+export let strokeShortcut = 'L';
+export let moveShortcut = 'M';
+export let rectngleShortcut = 'R';
+export let circleShortcut = 'C';
+export let lightenShortcut = 'U';

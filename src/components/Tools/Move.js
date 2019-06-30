@@ -1,7 +1,7 @@
-import {WINDOW_SIZE} from '../../const/const'
+import { WINDOW_SIZE } from '../../const/const'
 
 export default class Move {
-  constructor (canvas) {
+  constructor(canvas) {
     this.currentCanvas = canvas.getCanvas();
 
     this.move = document.createElement('li');
@@ -11,9 +11,9 @@ export default class Move {
     document.querySelector('.tool-wrapper').appendChild(this.move);
   }
 
-  set () {
-    this.move.onclick = () => {
-      const ctx = this.currentCanvas.getContext('2d');
+  start() {
+    this.move.dispatchEvent(new Event('tool', { "bubbles": true }));
+    const ctx = this.currentCanvas.getContext('2d');
 
     this.currentCanvas.onmousedown = () => {
       let startCanvas = ctx.getImageData(0, 0, this.currentCanvas.getAttribute("width"), this.currentCanvas.getAttribute("height"));
@@ -22,12 +22,12 @@ export default class Move {
       let startY = Math.floor((this.currentCanvas.getAttribute("height") * event.offsetY) / WINDOW_SIZE);
 
       this.currentCanvas.onmousemove = (event) => {
-        ctx.clearRect (0, 0,this.currentCanvas.getAttribute("width"),this.currentCanvas.getAttribute("height") );
+        ctx.clearRect(0, 0, this.currentCanvas.getAttribute("width"), this.currentCanvas.getAttribute("height"));
 
-          let currentX = Math.floor((this.currentCanvas.getAttribute("width") * event.offsetX) / WINDOW_SIZE);
-          let currentY = Math.floor((this.currentCanvas.getAttribute("height") * event.offsetY) / WINDOW_SIZE);
+        let currentX = Math.floor((this.currentCanvas.getAttribute("width") * event.offsetX) / WINDOW_SIZE);
+        let currentY = Math.floor((this.currentCanvas.getAttribute("height") * event.offsetY) / WINDOW_SIZE);
 
-          ctx.putImageData(startCanvas, currentX-startX, currentY-startY);
+        ctx.putImageData(startCanvas, currentX - startX, currentY - startY);
       };
 
       this.currentCanvas.onmouseup = () => {
@@ -35,6 +35,11 @@ export default class Move {
         this.currentCanvas.dispatchEvent(new Event('canvas'));
       };
     };
-  };
+  }
+
+  set() {
+    this.move.onclick = () => {
+      this.start();
+    };
   }
 }

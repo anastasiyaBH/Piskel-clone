@@ -14,6 +14,12 @@ export default class Pen {
 
   set () {
     this.pen.onclick = () => {
+      this.start();
+  };
+  }
+
+  start() {
+    this.pen.dispatchEvent(new Event ('tool', {"bubbles": true}));
     this.currentCanvas.onmousedown = () => {
       this.currentCanvas.onmousemove = (event) => {
         event.preventDefault();
@@ -37,6 +43,5 @@ export default class Pen {
         this.currentCanvas.dispatchEvent(new Event('canvas'));
       };
     };
-  };
   }
 }

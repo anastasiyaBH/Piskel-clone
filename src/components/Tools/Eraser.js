@@ -1,7 +1,7 @@
-import {WINDOW_SIZE} from '../../const/const'
+import { WINDOW_SIZE } from '../../const/const'
 
 export default class Eraser {
-  constructor (canvas) {
+  constructor(canvas) {
     this.currentCanvas = canvas.getCanvas();
 
 
@@ -12,14 +12,14 @@ export default class Eraser {
     document.querySelector('.tool-wrapper').appendChild(this.eraser);
   }
 
-  set () {
-    this.eraser.onclick = () => {
+  start() {
+    this.eraser.dispatchEvent(new Event('tool', { "bubbles": true }));
     const ctx = this.currentCanvas.getContext('2d');
     this.currentCanvas.onmousedown = () => {
       this.currentCanvas.onmousemove = (event) => {
         let x = Math.floor((this.currentCanvas.getAttribute('width') * event.offsetX) / WINDOW_SIZE);
         let y = Math.floor((this.currentCanvas.getAttribute('height') * event.offsetY) / WINDOW_SIZE);
-        ctx.clearRect(x,y,1,1);
+        ctx.clearRect(x, y, 1, 1);
       };
 
       this.currentCanvas.onmouseup = () => {
@@ -27,6 +27,11 @@ export default class Eraser {
         this.currentCanvas.dispatchEvent(new Event('canvas'));
       };
     };
-  };
+  }
+
+  set() {
+    this.eraser.onclick = () => {
+      this.start();
+    };
   }
 }
