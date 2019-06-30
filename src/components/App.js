@@ -15,7 +15,8 @@ import Stroke from './tools/Stroke'
 import Lighten from './tools/Lighten'
 import CanvasInfo from './canvas-info/CanvasInfo';
 import Move from './tools/Move'
-import * as shortcats from './shortcuts/shortcuts'
+import {shortcuts} from './shortcuts/shortcuts'
+import ShortcatsPanel from './shortcuts/ShortcutsPanel'
 
 export default class App {
   constructor() {
@@ -83,45 +84,48 @@ export default class App {
     actionWrapper.set();
     toolsWrapper.set();
 
+    const shortcatsPanel = new ShortcatsPanel;
+    shortcatsPanel.set();
+
     window.addEventListener('keydown', (event) => {
       switch (event.key) {
-        case shortcats.penShortcut, shortcats.penShortcut.toLocaleLowerCase(): {
+        case shortcuts['Pen tool'], shortcuts['Pen tool'].toLocaleLowerCase(): {
           pen.start();
           break;
         }
-        case shortcats.circleShortcut, shortcats.circleShortcut.toLocaleLowerCase(): {
+        case shortcuts['Circle'], shortcuts['Circle'].toLocaleLowerCase(): {
           circle.start();
           break;
         }
-        case shortcats.eraserShortcut, shortcats.eraserShortcut.toLocaleLowerCase(): {
+        case shortcuts['Eraser tool'], shortcuts['Eraser tool'].toLocaleLowerCase(): {
           eraser.start();
           break;
         }
-        case shortcats.lightenShortcut, shortcats.lightenShortcut.toLocaleLowerCase(): {
+        case shortcuts['Lighten'], shortcuts['Lighten'].toLocaleLowerCase(): {
           lighten.start();
           break;
         }
-        case shortcats.moveShortcut, shortcats.moveShortcut.toLocaleLowerCase(): {
+        case shortcuts['Move tool'], shortcuts['Move tool'].toLocaleLowerCase(): {
           move.start();
           break;
         }
-        case shortcats.paintBucketShortcut, shortcats.paintBucketShortcut.toLocaleLowerCase(): {
+        case shortcuts['Paint Bucket'], shortcuts['Paint Bucket'].toLocaleLowerCase(): {
           paintBucket.start();
           break;
         }
-        case shortcats.paintSamePixelsShortcut, shortcats.paintSamePixelsShortcut.toLocaleLowerCase(): {
+        case shortcuts['Paint same pixels'], shortcuts['Paint same pixels'].toLocaleLowerCase(): {
           paintSamePixels.start();
           break;
         }
-        case shortcats.rectngleShortcut, shortcats.rectngleShortcut.toLocaleLowerCase(): {
+        case shortcuts['Recangle'], shortcuts['Recangle'].toLocaleLowerCase(): {
           rectangle.start();
           break;
         }
-        case shortcats.strokeShortcut, shortcats.strokeShortcut.toLocaleLowerCase(): {
+        case shortcuts['Stroke tool'], shortcuts['Stroke tool'].toLocaleLowerCase(): {
           stroke.start();
           break;
         }
-        case shortcats.swapColorShortcut, shortcats.swapColorShortcut.toLocaleLowerCase(): {
+        case shortcuts['Swap Primary/Secondary color'], shortcuts['Swap Primary/Secondary color'].toLocaleLowerCase(): {
           colorSelector.swap();
           break;
         }
