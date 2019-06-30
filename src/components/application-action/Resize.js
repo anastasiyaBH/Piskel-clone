@@ -74,6 +74,7 @@ export default class Resize {
           });
 
           this.currentCanvas.getCanvas().dispatchEvent(new Event('resize'));
+          this.currentCanvas.getCanvas().dispatchEvent(new Event('click'));
 
           let openSetting = document.querySelector('.enabled');
           if (openSetting) {
