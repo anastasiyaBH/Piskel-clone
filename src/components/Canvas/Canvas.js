@@ -21,12 +21,6 @@ export default class Canvas {
     });
   }
 
-  clear() {
-    const x = 0, y = 0;
-    var ctx = this.canvas.getContext('2d');
-    ctx.clearRect(x, y, DEFAULT_SIZE, DEFAULT_SIZE);
-  }
-
   getCanvas() {
     return this.canvas;
   }
